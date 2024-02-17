@@ -71,7 +71,7 @@ def get_imagenet(args, alg, name, num_labels, num_classes, data_dir='./data', in
         transforms.Normalize(mean['imagenet'], std['imagenet'])
     ])
 
-    data_dir = os.path.join(data_dir, name.lower())
+    data_dir = os.path.join(data_dir, name)
 
     dataset = ImagenetDataset(root=os.path.join(data_dir, "train"), transform=transform_weak, ulb=False, alg=alg, strong_transform=transform_strong)
     percentage = num_labels / len(dataset)

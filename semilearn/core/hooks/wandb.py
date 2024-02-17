@@ -44,7 +44,9 @@ class WANDBHook(Hook):
                               config=algorithm.args.__dict__, 
                               project=project, 
                               resume=resume,
-                              dir=save_dir)
+                              dir=save_dir,
+                              mode='offline',
+                              )
 
 
     def after_train_step(self, algorithm):
