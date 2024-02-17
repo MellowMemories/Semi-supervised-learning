@@ -60,3 +60,4 @@ else:
 sendDingTalkMessage("训练完成")
 
 # python fast_commands.py > output.log 2>&1
+# tar cf - * | ssh -p 22 h3c@10.108.201.73 "cd /d9lab/songjie/datasets/mydataset_semi && tar xf -"
