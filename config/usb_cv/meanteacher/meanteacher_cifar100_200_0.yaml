@@ -6,13 +6,21 @@ load_path: ./saved_models/usb_cv//meanteacher_mydataset/latest_model.pth
 overwrite: True
 use_tensorboard: False
 use_wandb: True
+wandb_project_name: MeanTeacher
+wandb_offline: True
 epoch: 200
-num_train_iter: 204800
-num_log_iter: 256
-num_eval_iter: 2048
-batch_size: 8
+# num_train_iter: 204800
+# num_log_iter: 256
+# num_eval_iter: 2048
+# batch_size: 8
+# eval_batch_size: 16
+# num_warmup_iter: 5120
+num_train_iter: 102400
+num_log_iter: 128
+num_eval_iter: 1024
+batch_size: 16
 eval_batch_size: 16
-num_warmup_iter: 5120
+num_warmup_iter: 2560
 num_labels: 3000
 uratio: 2
 ema_m: 0.999
@@ -25,7 +33,7 @@ lr: 0.001
 layer_decay: 0.5
 momentum: 0.9
 weight_decay: 0.0005
-amp: False
+amp: True # 是否使用半精度训练
 clip: 0.0
 use_cat: True
 net: vit_small_patch16_224

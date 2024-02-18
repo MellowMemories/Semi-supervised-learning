@@ -38,7 +38,8 @@ def run(command: str or list[str]): # type: ignore
     
 def train():
     return "python train.py --c config/usb_cv/meanteacher/meanteacher_cifar100_200_0.yaml \
-        --use_wandb"
+        --use_wandb --wandb_run_name=MeanTeacher_use_amp \
+        --wandb_notes 开启半精，并将batch扩大一倍，各iter缩小1/2，看看效果"
     
 # 切换不同的脚本
 # command = [timm for _ in range(3)] # 重复执行5次

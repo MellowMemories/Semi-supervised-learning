@@ -40,7 +40,8 @@ class MeanTeacher(AlgorithmBase):
             outs_x_lb = self.model(x_lb)
             logits_x_lb = outs_x_lb['logits']
             feats_x_lb = outs_x_lb['feat']
-
+            # self.counter_data_label_per_epoch += x_lb.shape[0]
+            # self.counter_data_unlabel_per_epoch += x_ulb_w.shape[0]
             self.ema.apply_shadow()
             with torch.no_grad():
                 self.bn_controller.freeze_bn(self.model)

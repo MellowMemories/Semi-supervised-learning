@@ -95,7 +95,7 @@ def get_dataset(args, algorithm, dataset, num_labels, num_classes, data_dir='./d
         test_dset = None
     elif dataset in ["imagenet", "imagenet127", "mydataset_semi/sample_images"]:
         lb_dset, ulb_dset, eval_dset = get_imagenet(args, algorithm, dataset, num_labels, num_classes, data_dir=data_dir, include_lb_to_ulb=include_lb_to_ulb)
-        test_dset = None
+        test_dset = eval_dset
     # speech dataset
     elif dataset in ['esc50', 'fsdnoisy', 'gtzan', 'superbks', 'superbsi', 'urbansound8k']:
         lb_dset, ulb_dset, eval_dset, test_dset = get_pkl_dset(args, algorithm, dataset, num_labels, num_classes, data_dir=data_dir, include_lb_to_ulb=include_lb_to_ulb)

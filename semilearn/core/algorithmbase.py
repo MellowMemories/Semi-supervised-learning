@@ -338,10 +338,10 @@ class AlgorithmBase:
         """
         self.model.train()
         self.call_hook("before_run")
-
         for epoch in range(self.start_epoch, self.epochs):
             self.epoch = epoch
-
+            # self.counter_data_label_per_epoch = 0
+            # self.counter_data_unlabel_per_epoch = 0
             # prevent the training iterations exceed args.num_train_iter
             if self.it >= self.num_train_iter:
                 break
@@ -354,7 +354,7 @@ class AlgorithmBase:
                 # prevent the training iterations exceed args.num_train_iter
                 if self.it >= self.num_train_iter:
                     break
-
+                
                 self.call_hook("before_train_step")
                 self.out_dict, self.log_dict = self.train_step(
                     **self.process_batch(**data_lb, **data_ulb)

@@ -19,8 +19,8 @@ class WANDBHook(Hook):
 
     def before_run(self, algorithm):
         # job_id = '_'.join(algorithm.args.save_name.split('_')[:-1])
-        name = algorithm.save_name
-        project = algorithm.save_dir.split('/')[-1]
+        name = algorithm.save_name if not algorithm.args.wandb_run_name else algorithm.args.wandb_run_name
+        project = algorithm.save_dir.split('/')[-1] if not algorithm.args.wandb_project_name else algorithm.args.wandb_project_name
 
         # tags
         benchmark = f'benchmark: {project}'
@@ -41,11 +41,12 @@ class WANDBHook(Hook):
 
         self.run = wandb.init(name=name, 
                               tags=tags, 
+                              notes=algorithm.args.wandb_notes if algorithm.args.wandb_notes else None,
                               config=algorithm.args.__dict__, 
                               project=project, 
                               resume=resume,
                               dir=save_dir,
-                              mode='offline',
+                              mode='offline' if algorithm.args.wandb_offline else 'online',
                               )
 
 

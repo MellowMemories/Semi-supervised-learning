@@ -226,6 +226,14 @@ def get_config():
     )
     # config file
     parser.add_argument("--c", type=str, default="")
+    
+    """
+    wandb settings
+    """
+    parser.add_argument("--wandb_project_name", type=str, default=None)
+    parser.add_argument('--wandb_offline', action='store_true')
+    parser.add_argument("--wandb_run_name", type=str, default=None)
+    parser.add_argument("--wandb_notes", type=str, default=None)
 
     # add algorithm specific parameters
     args = parser.parse_args()
