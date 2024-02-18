@@ -1,6 +1,9 @@
 from datetime import datetime
 import os, runpy, sys, typing, json, requests
 
+# 对每次训练权重文件夹的命名
+now = lambda: datetime.now().strftime("%Y%m%d_%H%M%S")
+
 def sendDingTalkMessage(msg: str = None):
     # 替换成你的钉钉机器人的access_token，也可以直接用我的
     dingding_url = "https://oapi.dingtalk.com/robot/send?access_token=bfd6ed1edee89290b9d5098db63691b55f9b97bdd9c5eb69788df32e4f01e203"
@@ -37,9 +40,10 @@ def run(command: str or list[str]): # type: ignore
     fun(args[0], run_name="__main__")
     
 def train():
-    return "python train.py --c config/usb_cv/meanteacher/meanteacher_cifar100_200_0.yaml \
-        --use_wandb --wandb_run_name=MeanTeacher_use_amp \
-        --wandb_notes 开启半精，并将batch扩大一倍，各iter缩小1/2，看看效果"
+    return f"python train.py --c config/usb_cv/meanteacher/meanteacher_cifar100_200_0.yaml \
+    --model_pth_dir ./save_models/usb_cv/meanteacher_mydataset/{now()} \
+    --use_wandb --wandb_run_name=MeanTeacher_use_amp \
+    --wandb_notes 开启半精，并将batch扩大一倍，各iter缩小1/2，看看效果"
     
 # 切换不同的脚本
 # command = [timm for _ in range(3)] # 重复执行5次

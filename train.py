@@ -36,6 +36,7 @@ def get_config():
     """
     parser.add_argument("--save_dir", type=str, default="./saved_models")
     parser.add_argument("-sn", "--save_name", type=str, default="fixmatch")
+    parser.add_argument("--model_pth_dir", type=str, default=None)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--load_path", type=str)
     parser.add_argument("-o", "--overwrite", action="store_true", default=True)
@@ -272,7 +273,7 @@ def main(args):
         args.num_train_iter % args.epoch == 0
     ), f"# total training iter. {args.num_train_iter} is not divisible by # epochs {args.epoch}"  # noqa: E501
 
-    save_path = os.path.join(args.save_dir, args.save_name)
+    save_path = os.path.join(args.save_dir, args.save_name) if not args.model_pth_dir else args.model_pth_dir
     if os.path.exists(save_path) and args.overwrite and args.resume is False:
         import shutil
 
